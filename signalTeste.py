@@ -29,5 +29,5 @@ class Signal:
     def plotFFT(self, signal, fs):
         x,y = self.calcFFT(signal, fs)
         plt.figure()
-        plt.plot(x, 10*np.log(np.abs(y)))
+        plt.plot(x, np.abs(y))
         plt.title('Fourier')
