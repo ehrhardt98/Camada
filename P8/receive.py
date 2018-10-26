@@ -28,9 +28,8 @@ print("reproduzindo")
 
 myrecording = [i[0] for i in myrecording]
 
-#sd.play(myrecording)
-#sd.wait()
-
+sd.play(myrecording)
+sd.wait()
 
 def filtro(sound, fs):
     nyq_rate = fs/2
@@ -42,21 +41,31 @@ def filtro(sound, fs):
     yFiltrado = signal.lfilter(taps, 1.0, sound)
     return yFiltrado
 
+
+x = []
+for i in range(len(myrecording)):
+    x.append(i)
+
 recebido = portadora * myrecording
 
 demodulado = filtro(recebido, fs)
 
-#sinal.plotFFT(demodulado, fs)
-#plt.show()
+print("Myrecording - Tempo")
+plt.plot(x, myrecording)
+plt.show()
 
-#plt.plot(demodulado, time)
-#plt.show()
-
+print("Myrecording - FS")
 sinal.plotFFT(myrecording, fs)
 plt.show()
 
-#plt.plot(myrecording, time)
-#plt.show()
+print("Demodulado - Tempo")
+plt.plot(x, demodulado)
+plt.show()
+
+print("Demodulado - FS")
+sinal.plotFFT(demodulado, fs)
+plt.show()
+
 
 def normalize(array):
 
@@ -69,9 +78,5 @@ def normalize(array):
 
 demodulado_norm = normalize(demodulado)
 
-sinal.plotFFT(demodulado_norm, fs)
-plt.show()
-
-print("batata")
 sd.play(demodulado_norm)
 sd.wait()
