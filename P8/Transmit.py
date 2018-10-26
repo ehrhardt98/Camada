@@ -5,7 +5,7 @@ from scipy import signal
 import math
 from signalTeste import *
 
-filename = "terror.wav"
+filename = "leroy.wav"
 
 sound, fs = sf.read(filename)
 
